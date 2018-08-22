@@ -188,6 +188,10 @@ gUnknown_Debug_03004BC0 = .;
 
 // field_control_avatar.c
 SYMBOL(gSelectedEventObject, 4)
+SYMBOL(gStopMoveUp, 8)
+SYMBOL(gStopMoveDown, 8)
+SYMBOL(gStopMoveLeft, 8)
+SYMBOL(gStopMoveRight, 8)
 
 // ???
 SYMBOL(gPokemonItemUseCallback, 4)

@@ -15,6 +15,7 @@
 #include "event_object_movement.h"
 #include "field_message_box.h"
 #include "field_player_avatar.h"
+#include "field_control_avatar.h"
 #include "field_screen_effect.h"
 #include "field_specials.h"
 #include "field_tasks.h"
@@ -2016,5 +2017,53 @@ bool8 ScrCmd_takecoins(struct ScriptContext *ctx)
         gSpecialVar_Result = 0;
     else
         gSpecialVar_Result = 1;
+    return FALSE;
+}
+
+bool8 ScrCmd_stopmoving(struct ScriptContext *ctx)
+{
+    u8 dir = ScriptReadByte(ctx);
+
+    if (dir == DIR_NORTH)
+	{
+		gStopMoveUp = 1;
+	}
+    else if (dir == DIR_SOUTH)
+	{
+		gStopMoveDown = 1;
+	}
+    else if (dir == DIR_WEST)
+    {
+		gStopMoveLeft = 1;
+	}
+    else if (dir == DIR_EAST)
+    {
+		gStopMoveRight = 1;
+	}
+	
+    return FALSE;
+}
+
+bool8 ScrCmd_releasemoving(struct ScriptContext *ctx)
+{
+    u8 dir = ScriptReadByte(ctx);
+
+    if (dir == DIR_NORTH)
+	{
+		gStopMoveUp = 0;
+	}
+    else if (dir == DIR_SOUTH)
+	{
+		gStopMoveDown = 0;
+	}
+    else if (dir == DIR_WEST)
+    {
+		gStopMoveLeft = 0;
+	}
+    else if (dir == DIR_EAST)
+    {
+		gStopMoveRight = 0;
+	}
+	
     return FALSE;
 }

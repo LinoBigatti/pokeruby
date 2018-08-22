@@ -164,15 +164,35 @@ void GetPlayerFieldInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
         if (forcedMove == FALSE && tileTransitionState == T_TILE_CENTER)
             input->checkStandardWildEncounter = TRUE;
     }
-
+	
     if (heldKeys & DPAD_UP)
-        input->dpadDirection = DIR_NORTH;
+	{
+		if (gStopMoveUp == 0)
+		{
+			input->dpadDirection = DIR_NORTH;
+		}
+	}
     else if (heldKeys & DPAD_DOWN)
-        input->dpadDirection = DIR_SOUTH;
+	{
+		if (gStopMoveDown == 0)
+		{
+			input->dpadDirection = DIR_SOUTH;
+		}
+	}
     else if (heldKeys & DPAD_LEFT)
-        input->dpadDirection = DIR_WEST;
+    {
+		if (gStopMoveLeft == 0)
+		{
+			input->dpadDirection = DIR_WEST;
+		}
+	}
     else if (heldKeys & DPAD_RIGHT)
-        input->dpadDirection = DIR_EAST;
+    {
+		if (gStopMoveRight == 0)
+		{
+			input->dpadDirection = DIR_EAST;
+		}
+	}
 
 #if DEBUG
     if ((heldKeys & R_BUTTON) && input->pressedStartButton)

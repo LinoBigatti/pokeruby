@@ -256,14 +256,14 @@
 	.2byte SPECIAL_\function
 	.endm
 
-	@ Calls a special function. That function's output (if any) will be written to the variable you specify.
+	@ Calls a special function. That functions output (if any) will be written to the variable you specify.
 	.macro specialvar output, function
 	.byte 0x26
 	.2byte \output
 	.2byte SPECIAL_\function
 	.endm
 
-	@ Blocks script execution until a command or ASM code manually unblocks it. Generally used with specific commands and specials. If this command runs, and a subsequent command or piece of ASM does not unblock state, the script will remain blocked indefinitely (essentially a hang).
+	@ Blocks script execution until a command or AS M code manually unblocks it. Generally used with specific commands and specials. If this command runs, and a subsequent command or piece of AS M does not unblock state, the script will remain blocked indefinitely (essentially a hang).
 	.macro waitstate
 	.byte 0x27
 	.endm
@@ -1316,44 +1316,54 @@
 	.macro waitmoncry
 	.byte 0xc5
 	.endm
-
+	
+	.macro stopmoving dir
+	.byte 0xc6
+	.byte \dir
+	.endm
+	
+	.macro releasemoving dir
+	.byte 0xc7
+	.byte \dir
+	.endm
+	
 	@ Writes the name of the specified (box) PC box to the specified buffer.
 	.macro bufferboxname out, box
-	.byte 0xc6
+	.byte 0xc8
 	.byte \out
 	.2byte \box
 	.endm
 
 	@ Sets the color of the text in standard message boxes. 0x00 produces blue (male) text, 0x01 produces red (female) text, 0xFF resets the color to the default for the current OW's gender, and all other values produce black text.
 	.macro textcolor color
-	.byte 0xc7
+	.byte 0xc9
 	.byte \color
 	.endm
 
 	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
 	.macro loadhelp pointer
-	.byte 0xc8
+	.byte 0xca
 	.4byte \pointer
 	.endm
 
 	@ The exact purpose of this command is unknown, but it is related to the blue help-text box that appears on the bottom of the screen when the Main Menu is opened.
 	.macro unloadhelp
-	.byte 0xc9
+	.byte 0xcb
 	.endm
 
 	@ After using this command, all standard message boxes will use the signpost frame.
 	.macro signmsg
-	.byte 0xca
+	.byte 0xcc
 	.endm
 
 	@ Ends the effects of signmsg, returning message box frames to normal.
 	.macro normalmsg
-	.byte 0xcb
+	.byte 0xcd
 	.endm
 
 	@ Compares the value of a hidden variable to a dword.
 	.macro comparehiddenvar a, value
-	.byte 0xcc
+	.byte 0xce
 	.byte \a
 	.4byte \value
 	.endm

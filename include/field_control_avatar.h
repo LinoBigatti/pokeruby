@@ -33,5 +33,9 @@ u8 *GetCoordEventScriptAtMapPosition(struct MapPosition *);
 u8 *GetEventObjectScriptPointerPlayerFacing(void);
 u8 TrySetDiveWarp(void);
 bool8 dive_warp(struct MapPosition*, u16);
+u8 gStopMoveUp;
+u8 gStopMoveDown;
+u8 gStopMoveLeft;
+u8 gStopMoveRight;
 
 #endif
